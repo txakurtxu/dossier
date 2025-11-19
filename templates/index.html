@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Prototipo EHR Knidian</title>
+<style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; }
+    textarea { width: 100%; }
+    .box { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    label { display: block; margin-top: 8px; font-weight: bold; }
+    #history { background: #f7f7f7; }
+</style>
+<style>
+#toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+.toast {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.phi-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 10px;
+    margin-top: 10px;
+}
+.phi-grid label {
+    font-weight: 600;
+}
+
+.phi-grid input {
+    width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+
+<h2 style="margin-top: 0px;">Prototipo EHR Knidian</h2>
+
+<div class="box">
+    <h3 style="margin-top: 0px;">Informaci&oacute;n del paciente</h3>
+
+    <div class="phi-grid">
+        <label for="phi_name">Nombre:</label>
+        <input id="phi_name" type="text">
+
+        <label for="phi_lastname">Apellido:</label>
+        <input id="phi_lastname" type="text">
+
+        <label for="phi_birthdate">Fecha de nacimiento:</label>
+        <input id="phi_birthdate" type="date">
+
+        <label for="phi_pid">DNI<small> / N&uacute;mero de identificaci&oacute;n</small>:</label>
+        <input id="phi_pid" type="text">
+    </div>
+
+    <br>
+
+    <button onclick="clearAllFields()">Limpiar datos</button>
+    <input type="file" id="patient_file" accept=".json" onchange="loadPatientFile(event)">
+</div>
+
+<div class="box">
+    <h3 style="margin-top: 0px;">Nota m&eacute;dica nueva</h3>
+    <textarea id="new_notes" rows="8" placeholder="Ingrese la nota m&eacute;dica nueva ac&aacute; ..."></textarea>
+    <br><br>
+    <button onclick="saveNewVisit()">Grabar nota</button>
+</div>
+
+<div class="box">
+    <h3 style="margin-top: 0px;">Historial de visitas</h3>
+    <textarea id="history" rows="12" readonly></textarea>
+</div>
+
+<script defer src="/static/ehr.js"></script>
+
+<div id="toast-container"></div>
+</body>
+</html>
