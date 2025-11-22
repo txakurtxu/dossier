@@ -53,6 +53,28 @@
     padding: 6px;
     box-sizing: border-box;
 }
+
+.custom-file-button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 95%; /* inherit */
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    user-select: none;
+}
 </style>
 </head>
 <body>
@@ -78,15 +100,16 @@
 
     <br>
 
-    <button onclick="clearAllFields()">Limpiar datos</button>
-    <input type="file" id="patient_file" accept=".json" onchange="loadPatientFile(event)">
+    <button class="custom-file-button" onclick="clearAllFields()">Limpiar datos</button>
+    <input type="file" id="patient_file" style="display: none;" accept=".json" onchange="loadPatientFile(event)">
+    <label for="patient_file" class="custom-file-button">Cargar datos</label>
 </div>
 
 <div class="box">
     <h3 style="margin-top: 0px;">Nota m&eacute;dica nueva</h3>
     <textarea id="new_notes" rows="8" placeholder="Ingrese la nota m&eacute;dica nueva ac&aacute; ..."></textarea>
     <br><br>
-    <button onclick="saveNewVisit()">Grabar nota</button>
+    <button class="custom-file-button" onclick="saveNewVisit()">Grabar nota</button>
 </div>
 
 <div class="box">

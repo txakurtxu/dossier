@@ -31,7 +31,7 @@ function uuid() {
 }
 
 async function saveJSON(data, defaultFileName) {
-    const json = JSON.stringify(data, null, 2);
+    const json = JSON.stringify(data, null, 2).replace(/\n/g, '\r\n');;
 
     if (window.showSaveFilePicker) {
         const handle = await window.showSaveFilePicker({
